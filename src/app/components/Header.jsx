@@ -70,7 +70,6 @@ export default function Header() {
               alt="Logo de Bernier Palettes"
               width={160}
               height={45}
-              // CORRECTION : On fixe la hauteur et on laisse la largeur s'adapter
               className="h-11 w-auto"
               priority
             />
@@ -108,10 +107,11 @@ export default function Header() {
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <ul className="flex flex-col items-center space-y-8">
+        {/* --- MODIFICATION ICI --- */}
+        <ul className="flex flex-col items-center w-full">
           {navLinks.map((link) => (
-            <li key={link.name}>
-              <Link href={isHomePage ? link.href : `/${link.href}`} onClick={handleLinkClick} className="text-2xl font-medium text-[#A4612D] hover:opacity-80 transition-opacity">
+            <li key={link.name} className="w-3/5 text-center border-b border-gray-300 last:border-b-0">
+              <Link href={isHomePage ? link.href : `/${link.href}`} onClick={handleLinkClick} className="block py-6 text-2xl font-medium text-[#A4612D] hover:opacity-80 transition-opacity">
                 {link.name}
               </Link>
             </li>
