@@ -20,12 +20,9 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // On utilise le hook pour obtenir le chemin actuel de l'URL
   const pathname = usePathname();
-  // On détermine si on est sur la page d'accueil
   const isHomePage = pathname === '/';
 
-  // Effet pour gérer la visibilité au scroll et la fermeture du menu
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -46,7 +43,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, isMenuOpen]);
 
-  // Effet pour bloquer le scroll du body quand le menu est ouvert
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add('overflow-hidden');
@@ -55,7 +51,6 @@ export default function Header() {
     }
   }, [isMenuOpen]);
 
-  // Handler pour fermer le menu au clic sur un lien
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
@@ -75,7 +70,8 @@ export default function Header() {
               alt="Logo de Bernier Palettes"
               width={160}
               height={45}
-               className="h-auto w-auto"
+              // CORRECTION : On fixe la hauteur et on laisse la largeur s'adapter
+              className="h-11 w-auto"
               priority
             />
           </Link>

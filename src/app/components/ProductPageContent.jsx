@@ -4,8 +4,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Modal from '@/app/components/Modal';
-import ContactForm from '@/app/components/ContactForm';
+import Modal from '@/app/components/Modal'; // Chemin d'import corrigé
+import ContactForm from '@/app/components/ContactForm'; // Chemin d'import corrigé
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 
 export default function ProductPageContent({ product }) {
@@ -67,8 +67,37 @@ export default function ProductPageContent({ product }) {
           </div>
         )}
 
+        {/* --- SECTION CORRIGÉE --- */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* ... cartes caractéristiques, avantages, applications ... */}
+            {product.specifications?.map && (
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Caractéristiques générales</h3>
+                <div className="space-y-2 text-sm">
+                  {product.specifications.map((spec) => (
+                    <div key={spec.key} className="flex justify-between">
+                      <span className="font-semibold text-gray-600">{spec.key}</span>
+                      <span className="text-right text-gray-800">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {product.advantages?.map && (
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Avantages</h3>
+                <ul className="space-y-2 list-disc list-inside text-sm text-gray-700">
+                  {product.advantages.map((adv) => <li key={adv}>{adv}</li>)}
+                </ul>
+              </div>
+            )}
+            {product.applications?.map && (
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Applications</h3>
+                <ul className="space-y-2 list-disc list-inside text-sm text-gray-700">
+                  {product.applications.map((app) => <li key={app}>{app}</li>)}
+                </ul>
+              </div>
+            )}
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
