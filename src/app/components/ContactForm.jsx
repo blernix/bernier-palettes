@@ -1,10 +1,12 @@
+// components/ContactForm.jsx
 'use client';
 
 import { useState, useMemo } from 'react';
-import emailjs from '@emailjs/browser'; // 1. Importer la librairie
-import { productsDetails } from '@/app/data/products'; // Chemin corrigé
+import emailjs from '@emailjs/browser';
+import { productsDetails } from '@/app/data/products';
 import Modal from './Modal';
-import { Send, Check, Loader2, XCircle, CheckCircle2 } from 'lucide-react'; // 2. Importer de nouvelles icônes
+import Link from 'next/link';
+import { Send, Check, Loader2, XCircle, CheckCircle2 } from 'lucide-react';
 
 const initialFormData = {
   name: '',
@@ -19,10 +21,9 @@ export default function ContactForm({ initialSubject = '' }) {
   const [touched, setTouched] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [isEditingInModal, setIsEditingInModal] = useState(false);
-
-  // 3. Nouveaux états pour gérer l'envoi
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // Peut être 'success' ou 'error'
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [policyAccepted, setPolicyAccepted] = useState(false);
 
   const subjectOptions = useMemo(() => {
     const options = new Set(productsDetails.map(p => `Devis pour : ${p.title}`));
@@ -34,19 +35,26 @@ export default function ContactForm({ initialSubject = '' }) {
   }, [initialSubject]);
 
   const validate = () => {
-    // ... (fonction de validation inchangée)
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Le nom est requis.';
-    if (!formData.email) newErrors.email = "L'email est requis.";
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Le format de l'email est invalide.";
+    if (!formData.email) {
+      newErrors.email = "L'email est requis.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Le format de l'email est invalide.";
+    }
     if (!formData.subject) newErrors.subject = 'Le sujet est requis.';
     if (!formData.message) newErrors.message = 'Le message est requis.';
+    if (!policyAccepted) newErrors.policy = 'Vous devez accepter la politique de confidentialité.';
     return newErrors;
   };
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    const { id, value, type, checked } = e.target;
+    if (type === 'checkbox') {
+      setPolicyAccepted(checked);
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
 
   const handleBlur = (e) => {
@@ -56,16 +64,15 @@ export default function ContactForm({ initialSubject = '' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTouched({ name: true, email: true, subject: true, message: true });
+    setTouched({ name: true, email: true, subject: true, message: true, policy: true });
     const validationErrors = validate();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      setSubmitStatus(null); // Réinitialiser le statut avant d'ouvrir
+      setSubmitStatus(null);
       setIsConfirmationModalOpen(true);
     }
   };
 
-  // 4. Logique d'envoi avec EmailJS
   const handleFinalSend = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -87,7 +94,9 @@ export default function ContactForm({ initialSubject = '' }) {
        console.log('SUCCESS!', response.status, response.text);
        setSubmitStatus('success');
        setIsSubmitting(false);
-       setFormData(initialFormData); // Réinitialiser le formulaire
+       setFormData(initialFormData);
+       setPolicyAccepted(false);
+       setTouched({});
     }, (err) => {
        console.log('FAILED...', err);
        setSubmitStatus('error');
@@ -110,30 +119,83 @@ export default function ContactForm({ initialSubject = '' }) {
       <style>{shakeAnimation}</style>
       <h3 className="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
-        {/* --- Champs du formulaire (inchangés) --- */}
+        
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-          <input type="text" id="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} placeholder="Votre nom" className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.name && errors.name ? 'border-red-500 shake' : touched.name && !errors.name ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`} />
-          {touched.name && errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nom <span className="text-red-500">*</span></label>
+          <input
+            type="text" id="name" value={formData.name} onChange={handleChange} onBlur={handleBlur}
+            placeholder="Votre nom"
+            aria-required="true"
+            aria-invalid={touched.name && !!errors.name}
+            aria-describedby="name-error"
+            className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.name && errors.name ? 'border-red-500 shake' : touched.name && !errors.name ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}
+          />
+          {touched.name && errors.name && <p id="name-error" className="text-red-500 text-xs mt-1" aria-live="polite">{errors.name}</p>}
         </div>
+        
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input type="email" id="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} placeholder="votre@email.com" className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.email && errors.email ? 'border-red-500 shake' : touched.email && !errors.email ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`} />
-          {touched.email && errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email <span className="text-red-500">*</span></label>
+          <input
+            type="email" id="email" value={formData.email} onChange={handleChange} onBlur={handleBlur}
+            placeholder="votre@email.com"
+            aria-required="true"
+            aria-invalid={touched.email && !!errors.email}
+            aria-describedby="email-error"
+            className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.email && errors.email ? 'border-red-500 shake' : touched.email && !errors.email ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}
+          />
+          {touched.email && errors.email && <p id="email-error" className="text-red-500 text-xs mt-1" aria-live="polite">{errors.email}</p>}
         </div>
+
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Sujet</label>
-          <select id="subject" value={formData.subject} onChange={handleChange} onBlur={handleBlur} className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.subject && errors.subject ? 'border-red-500 shake' : touched.subject && !errors.subject ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}>
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Sujet <span className="text-red-500">*</span></label>
+          <select
+            id="subject" value={formData.subject} onChange={handleChange} onBlur={handleBlur}
+            aria-required="true"
+            aria-invalid={touched.subject && !!errors.subject}
+            aria-describedby="subject-error"
+            className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.subject && errors.subject ? 'border-red-500 shake' : touched.subject && !errors.subject ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}
+          >
             <option value="" disabled>-- Choisissez un sujet --</option>
             {subjectOptions.map(option => <option key={option} value={option}>{option}</option>)}
           </select>
-          {touched.subject && errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
+          {touched.subject && errors.subject && <p id="subject-error" className="text-red-500 text-xs mt-1" aria-live="polite">{errors.subject}</p>}
         </div>
+        
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-          <textarea id="message" value={formData.message} onChange={handleChange} onBlur={handleBlur} rows="5" placeholder="Votre message..." className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.message && errors.message ? 'border-red-500 shake' : touched.message && !errors.message ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}></textarea>
-          {touched.message && errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message <span className="text-red-500">*</span></label>
+          <textarea
+            id="message" value={formData.message} onChange={handleChange} onBlur={handleBlur}
+            rows="5" placeholder="Votre message..."
+            aria-required="true"
+            aria-invalid={touched.message && !!errors.message}
+            aria-describedby="message-error"
+            className={`w-full bg-[#F8F5F1] border rounded-md p-3 transition-colors duration-200 ${touched.message && errors.message ? 'border-red-500 shake' : touched.message && !errors.message ? 'border-green-500' : 'border-gray-300'} focus:ring-2 focus:ring-[#A4612D] focus:border-[#A4612D]`}
+          ></textarea>
+          {touched.message && errors.message && <p id="message-error" className="text-red-500 text-xs mt-1" aria-live="polite">{errors.message}</p>}
         </div>
+
+        <div className="flex items-start">
+          <div className="flex items-center h-5">
+            <input
+              id="policy" name="policy" type="checkbox"
+              checked={policyAccepted} onChange={handleChange} onBlur={handleBlur}
+              aria-required="true"
+              aria-describedby="policy-error"
+              className={`h-4 w-4 rounded border-gray-300 text-[#A4612D] focus:ring-[#A4612D] ${touched.policy && errors.policy ? 'border-red-500' : ''}`}
+            />
+          </div>
+          <div className="ml-3 text-sm">
+            <label htmlFor="policy" className="text-gray-600">
+              En cochant cette case, j'accepte la{' '}
+              <Link href="/politique-de-confidentialite" target="_blank" className="font-medium text-[#A4612D] hover:underline">
+                politique de confidentialité
+              </Link>
+              {' '}du site. <span className="text-red-500">*</span>
+            </label>
+            {touched.policy && errors.policy && <p id="policy-error" className="text-red-500 text-xs mt-1" aria-live="polite">{errors.policy}</p>}
+          </div>
+        </div>
+        
         <div className='flex justify-center'>
           <button type="submit" className="bg-[#6B4F4F] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300">
             Envoyer
@@ -141,25 +203,21 @@ export default function ContactForm({ initialSubject = '' }) {
         </div>
       </form>
 
-      <Modal isOpen={isConfirmationModalOpen} onClose={handleCloseModal}>
-        {/* --- 5. MODALE MISE À JOUR POUR GÉRER LES ÉTATS D'ENVOI --- */}
+      <Modal isOpen={isConfirmationModalOpen} onClose={handleCloseModal} title={!submitStatus ? (isEditingInModal ? 'Modifier votre message' : 'Récapitulatif de votre message') : ''}>
         {!submitStatus ? (
-          // --- VUE PAR DÉFAUT (RÉCAP/ÉDITION) ---
           isEditingInModal ? (
-            // Vue édition
+            // --- VUE ÉDITION ---
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Modifier votre message</h3>
               <div className="space-y-4">
-                <div><label htmlFor="email" className="block text-xs font-medium text-gray-600">Email</label><input type="email" id="email" value={formData.email} onChange={handleChange} className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1"/></div>
-                <div><label htmlFor="subject" className="block text-xs font-medium text-gray-600">Sujet</label><select id="subject" value={formData.subject} onChange={handleChange} className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1">{subjectOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></div>
-                <div><label htmlFor="message" className="block text-xs font-medium text-gray-600">Message</label><textarea id="message" value={formData.message} onChange={handleChange} rows="4" className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1"></textarea></div>
+                <div><label htmlFor="modal-email" className="block text-xs font-medium text-gray-600">Email</label><input type="email" id="email" value={formData.email} onChange={handleChange} className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1"/></div>
+                <div><label htmlFor="modal-subject" className="block text-xs font-medium text-gray-600">Sujet</label><select id="subject" value={formData.subject} onChange={handleChange} className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1">{subjectOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></div>
+                <div><label htmlFor="modal-message" className="block text-xs font-medium text-gray-600">Message</label><textarea id="message" value={formData.message} onChange={handleChange} rows="4" className="w-full bg-gray-100 border-gray-300 rounded-md p-2 mt-1"></textarea></div>
               </div>
               <div className="mt-6 flex justify-end"><button onClick={() => setIsEditingInModal(false)} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md flex items-center gap-2"><Check size={16} />Valider les modifications</button></div>
             </div>
           ) : (
-            // Vue récapitulatif
+            // --- VUE RÉCAPITULATIF ---
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Récapitulatif de votre message</h3>
               <div className="space-y-4 text-sm">
                 <div className="p-3 bg-gray-50 rounded-md"><span className="font-semibold text-gray-500">Email</span><p className="text-gray-800">{formData.email}</p></div>
                 <div className="p-3 bg-gray-50 rounded-md"><span className="font-semibold text-gray-500">Sujet</span><p className="text-gray-800">{formData.subject}</p></div>
@@ -176,16 +234,16 @@ export default function ContactForm({ initialSubject = '' }) {
           )
         ) : submitStatus === 'success' ? (
           // --- VUE SUCCÈS ---
-          <div className="text-center py-8">
-            <CheckCircle2 className="mx-auto h-16 w-16 text-green-500" />
+          <div className="text-center py-8" role="alert" aria-live="assertive">
+            <CheckCircle2 className="mx-auto h-16 w-16 text-green-500" aria-hidden="true" />
             <h3 className="text-2xl font-bold text-gray-800 mt-4">Message envoyé !</h3>
             <p className="text-gray-600 mt-2">Merci. Nous vous répondrons dans les plus brefs délais.</p>
             <button onClick={handleCloseModal} className="mt-6 bg-[#6B4F4F] text-white font-bold py-2 px-6 rounded-md">Fermer</button>
           </div>
         ) : (
           // --- VUE ERREUR ---
-          <div className="text-center py-8">
-            <XCircle className="mx-auto h-16 w-16 text-red-500" />
+          <div className="text-center py-8" role="alert" aria-live="assertive">
+            <XCircle className="mx-auto h-16 w-16 text-red-500" aria-hidden="true" />
             <h3 className="text-2xl font-bold text-gray-800 mt-4">Une erreur est survenue</h3>
             <p className="text-gray-600 mt-2">Veuillez réessayer. Si le problème persiste, contactez-nous directement.</p>
             <button onClick={() => setSubmitStatus(null)} className="mt-6 bg-[#6B4F4F] text-white font-bold py-2 px-6 rounded-md">Réessayer</button>

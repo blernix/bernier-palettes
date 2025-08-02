@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
             <p>Dernière mise à jour : 31 juillet 2025</p>
 
             <p>
-              La présente politique de confidentialité décrit la manière dont Bernier Palettes, en tant que responsable de traitement, collecte et utilise vos données personnelles lorsque vous utilisez notre site web accessible à l'adresse https://votresite.ca/.
+              La présente politique de confidentialité décrit la manière dont Bernier Palettes, en tant que responsable de traitement, collecte et utilise vos données personnelles lorsque vous utilisez notre site web accessible à l'adresse https://www.bernier-palettes.fr/
             </p>
 
             <h2 className="text-2xl font-bold text-gray-800 pt-6">1. Responsable du traitement</h2>

@@ -1,11 +1,10 @@
 // components/ContactSection.jsx
-'use client'; // IMPORTANT : On passe en composant client pour gérer l'état
+'use client';
 
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Map } from 'lucide-react';
 import ContactForm from './ContactForm';
 
-// Données pour les coordonnées et les horaires (inchangées)
 const contactDetails = [
   { icon: Phone, title: 'Téléphone', value: '04 79 44 21 93', href: 'tel:+33479442193' },
   { icon: Mail, title: 'Email', value: 'bernier.palettes@gmail.com', href: 'mailto:bernier.palettes@gmail.com' },
@@ -19,15 +18,15 @@ const openingHours = [
 ];
 
 export default function ContactSection() {
-  // Nouvel état pour gérer le consentement de la carte
   const [mapAccepted, setMapAccepted] = useState(false);
 
   return (
-    <section id="contact" className="bg-[#EDEAE5] py-20">
+    // A11Y: On lie la section à son titre principal.
+    <section id="contact" className="bg-[#EDEAE5] py-20" aria-labelledby="contact-heading">
       <div className="container mx-auto px-6">
         
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#3C3633]" style={{ fontFamily: 'serif' }}>
+          <h2 id="contact-heading" className="text-4xl font-bold text-[#3C3633]" style={{ fontFamily: 'serif' }}>
             Contactez-nous
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -43,6 +42,7 @@ export default function ContactSection() {
 
           <div className="space-y-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
+              {/* A11Y & SEO: Un <h3> est sémantiquement correct ici, en tant que sous-titre de "Contactez-nous". */}
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Coordonnées</h3>
               <div className="space-y-4">
                 {contactDetails.map((detail, index) => {
@@ -56,8 +56,10 @@ export default function ContactSection() {
                   );
                   return (
                     <div key={index} className="flex items-start gap-4">
-                      <Icon className="h-6 w-6 text-[#A4612D] flex-shrink-0 mt-1" />
+                      {/* A11Y: On cache l'icône décorative aux lecteurs d'écran. */}
+                      <Icon className="h-6 w-6 text-[#A4612D] flex-shrink-0 mt-1" aria-hidden="true" />
                       <div>
+                        {/* A11Y: Un <h4> est correct pour un sous-titre de "Coordonnées". */}
                         <h4 className="font-semibold text-gray-700">{detail.title}</h4>
                         {content}
                       </div>
@@ -66,11 +68,11 @@ export default function ContactSection() {
                 })}
               </div>
               
-              {/* --- BLOC GOOGLE MAPS MIS À JOUR POUR LE RGPD --- */}
               <div className="mt-6 rounded-md overflow-hidden border border-gray-200">
                 {mapAccepted ? (
-                  // Si l'utilisateur a accepté, on affiche la carte
                   <iframe 
+                    // A11Y: Un titre est obligatoire pour les iframes pour l'accessibilité.
+                    title="Carte de localisation de Bernier Palettes à Châteauneuf"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.5358404474223!2d6.18358137652711!3d45.55966207107568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478bb7a440cd2a61%3A0xdad0152b424e6a77!2sLes%20Iles%2C%202%20D1006%2C%2073390%20Ch%C3%A2teauneuf!5e0!3m2!1sfr!2sfr!4v1753629777744!5m2!1sfr!2sfr" 
                     className="w-full h-48 border-0"
                     allowFullScreen="" 
@@ -78,7 +80,6 @@ export default function ContactSection() {
                     referrerPolicy="no-referrer-when-downgrade">
                   </iframe>
                 ) : (
-                  // Sinon, on affiche le placeholder avec le bouton de consentement
                   <div className="relative w-full h-48 bg-gray-300">
                     <img 
                       src="https://placehold.co/400x300/e0e0e0/636363?text=Aper%C3%A7u+de+la+carte" 
@@ -86,9 +87,8 @@ export default function ContactSection() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
-                      {/* --- PHRASE MISE À JOUR AVEC LE LIEN --- */}
                       <p className="text-white text-sm mb-3">
-                        En affichant la carte, vous acceptez le dépôt de cookies par Google. Pour en savoir plus, consultez la  
+                        En affichant la carte, vous acceptez le dépôt de cookies par Google. Pour en savoir plus, consultez la {''} 
                         <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-200">
                            politique de confidentialité de Google
                         </a>.
@@ -97,7 +97,7 @@ export default function ContactSection() {
                         onClick={() => setMapAccepted(true)}
                         className="bg-white hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-md flex items-center gap-2 transition-colors"
                       >
-                        <Map size={16} />
+                        <Map size={16} aria-hidden="true" />
                         Afficher la carte
                       </button>
                     </div>
