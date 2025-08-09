@@ -20,7 +20,7 @@ export const metadata = {
     siteName: 'Bernier Palettes',
     images: [
       {
-        url: 'https://demo.palettes.2minaci.xyz/hero.png', // URL absolue de votre image principale
+        url: 'https://demo.palettes.2minaci.xyz/logoBernier.png', // URL absolue de votre image principale
         width: 1200,
         height: 630,
         alt: 'Entrepôt et camion de Bernier Palettes',
@@ -33,7 +33,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Bernier Palettes - Achat & Recyclage Palette Bois en Savoie (73)',
     description: 'Votre expert en solutions de palettes en bois neuves, recyclées et sur-mesure en Savoie.',
-    images: ['https://demo.palettes.2minaci.xyz/hero.png'], // URL absolue de votre image
+    images: ['https://demo.palettes.2minaci.xyz/logoBernier.png'], // URL absolue de votre image
   },
 };
 

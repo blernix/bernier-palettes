@@ -81,11 +81,11 @@ export default function ContactSection() {
                   </iframe>
                 ) : (
                   <div className="relative w-full h-48 bg-gray-300">
-                    <img 
+                    {/* <img 
                       src="https://placehold.co/400x300/e0e0e0/636363?text=Aper%C3%A7u+de+la+carte" 
                       alt="Aperçu de la carte de localisation de Bernier Palettes" 
                       className="w-full h-full object-cover"
-                    />
+                    /> */}
                     <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
                       <p className="text-white text-sm mb-3">
                         En affichant la carte, vous acceptez le dépôt de cookies par Google. Pour en savoir plus, consultez la {''} 
