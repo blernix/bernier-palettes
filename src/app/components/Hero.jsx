@@ -1,4 +1,3 @@
-// components/Hero.jsx
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -6,7 +5,6 @@ export default function Hero() {
   const heroImageSrc = "/hero.png"; // Définit ici le chemin de ton image
 
   return (
-    // A11Y: L'utilisation de <section> avec un id est une bonne pratique pour les ancres.
     <section id="accueil" className="relative h-screen flex items-center justify-center">
       
       {/* 1. L'image de fond */}
@@ -14,7 +12,6 @@ export default function Hero() {
         {heroImageSrc ? (
           <Image
             src={heroImageSrc}
-            // SEO & A11Y: Le texte alternatif est crucial. Il doit décrire l'image précisément pour les moteurs de recherche et les lecteurs d'écran.
             alt="Entrepôt de Bernier Palettes avec un stock important de palettes en bois et un camion de livraison prêt à partir."
             fill
             style={{ objectFit: 'cover' }}
@@ -31,16 +28,25 @@ export default function Hero() {
 
       {/* 3. Le contenu textuel et les boutons */}
       <div className="relative z-20 text-center text-white px-4">
-        {/* SEO: Le <h1> est le titre le plus important de la page. Celui-ci est excellent car il contient les mots-clés principaux (Palette, Recyclée, Bois, Savoie). */}
+        
+        {/* --- SEO: Titre H1 mis à jour avec le bon positionnement du drapeau --- */}
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-          Spécialiste de la Palette <br />
-          Recyclée Bois en Savoie
+          Palette Bois en Savoie : Achat, Recyclage & Sur-Mesure
+          {/* A11Y & SEO: Le drapeau est maintenant "inline" avec le texte */}
+          <Image 
+            src="/savoie.svg" 
+            alt="Drapeau de la Savoie" 
+            width={50} 
+            height={50} 
+            className="inline-block align-middle ml-3 h-10 w-10 md:h-12 md:w-12"
+          />
         </h1>
-        {/* A11Y: Le paragraphe est bien structuré. L'utilisation de <strong> est sémantiquement correcte pour mettre l'accent sur le nom de l'entreprise. */}
+        
+        {/* --- SEO: Paragraphe mis à jour --- */}
         <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
-          Depuis plus de 30 ans, <strong>Bernier Palettes</strong> est votre partenaire de confiance pour la fabrication et le recyclage de palettes en bois : palette recyclée, reconditionnée et palette neuve.
+          Depuis plus de 30 ans, <strong>Bernier Palettes</strong> est votre fournisseur de confiance près de <strong>Chambéry</strong> pour l'achat et le recyclage de palettes en bois neuves, d'occasion et reconditionnées.
         </p>
-        {/* La structure des boutons est déjà bien responsive. */}
+        
         <div className="flex flex-col items-center gap-4 md:flex-row justify-center">
             <Link href="#produit" className="bg-[#A4612D]  hover:bg-opacity-80 text-white font-bold py-3 px-6 rounded transition-colors duration-300">
             Découvrir nos produits
@@ -53,3 +59,4 @@ export default function Hero() {
     </section>
   );
 }
+

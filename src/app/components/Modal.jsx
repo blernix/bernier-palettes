@@ -1,59 +1,67 @@
-// components/Modal.jsx
 'use client';
 
 import { X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
-// A11Y: On ajoute une prop `title` pour le `aria-labelledby`
 export default function Modal({ isOpen, onClose, children, title }) {
-  // A11Y: On crée une référence au conteneur de la modale pour le focus trapping
   const modalRef = useRef(null);
+  const previouslyFocusedElement = useRef(null);
 
-  // A11Y & UX: Effet pour bloquer le scroll du body et gérer le focus
   useEffect(() => {
     if (isOpen) {
-      // Bloquer le scroll de la page en arrière-plan
-      document.body.style.overflow = 'hidden';
+      previouslyFocusedElement.current = document.activeElement;
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+      previouslyFocusedElement.current?.focus();
+    }
 
-      // Gérer le focus
-      const focusableElements = modalRef.current?.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen && modalRef.current) {
+      const focusableElements = modalRef.current.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
       );
-      const firstElement = focusableElements?.[0];
-      const lastElement = focusableElements?.[focusableElements.length - 1];
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
 
-      // Mettre le focus sur le premier élément quand la modale s'ouvre
-      setTimeout(() => firstElement?.focus(), 100); // Léger délai pour la transition
+      firstElement?.focus();
 
-      const handleKeyDown = (event) => {
-        if (event.key === 'Escape') {
-          onClose();
-        }
-        
-        // A11Y: Piège le focus à l'intérieur de la modale
+      const handleTab = (event) => {
         if (event.key === 'Tab') {
-          if (event.shiftKey) { // Shift + Tab (navigation arrière)
+          if (event.shiftKey) {
             if (document.activeElement === firstElement) {
-              lastElement?.focus();
+              lastElement.focus();
               event.preventDefault();
             }
-          } else { // Tab (navigation avant)
+          } else {
             if (document.activeElement === lastElement) {
-              firstElement?.focus();
+              firstElement.focus();
               event.preventDefault();
             }
           }
         }
       };
 
-      window.addEventListener('keydown', handleKeyDown);
-      // Fonction de nettoyage
+      const currentModalRef = modalRef.current;
+      currentModalRef.addEventListener('keydown', handleTab);
       return () => {
-        document.body.style.overflow = 'unset';
-        window.removeEventListener('keydown', handleKeyDown);
+        currentModalRef.removeEventListener('keydown', handleTab);
       };
     }
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -61,28 +69,32 @@ export default function Modal({ isOpen, onClose, children, title }) {
     <div 
       className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4"
       onClick={onClose}
-      // A11Y: Rôle de dialogue pour annoncer la modale
-      role="dialog"
-      // A11Y: Indique que la modale est... modale (bloque le contenu derrière)
-      aria-modal="true"
-      // A11Y: Lie la modale à son titre pour une annonce claire
-      aria-labelledby="modal-title"
     >
       <div 
         ref={modalRef}
-        className="bg-white rounded-lg shadow-2xl p-6 md:p-8 max-w-lg w-full relative max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-lg shadow-2xl max-w-lg w-full relative flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
       >
-        <div className="flex justify-between items-start mb-4">
-            {/* A11Y: Le titre est maintenant une prop, et on lui donne un ID pour `aria-labelledby` */}
-            <h2 id="modal-title" className="text-2xl font-bold text-gray-800">
-                {title || 'Fenêtre de dialogue'}
-            </h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-800" aria-label="Fermer la modale">
-              <X size={24} />
-            </button>
+        {/* En-tête de la modale avec titre centré */}
+        <div className="relative flex items-center justify-center p-5 border-b rounded-t">
+          <h2 id="modal-title" className="text-2xl font-bold text-gray-800 text-center">
+            {title || 'Fenêtre de dialogue'}
+          </h2>
+          <button 
+            onClick={onClose} 
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-800"
+            aria-label="Fermer la fenêtre"
+          >
+            <X size={24} />
+          </button>
         </div>
-        {children}
+        
+        <div className="p-6 space-y-6 overflow-y-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

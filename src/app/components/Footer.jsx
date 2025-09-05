@@ -30,13 +30,13 @@ export default function Footer() {
               Spécialiste de la palette en bois recyclée depuis plus de 30 ans en Savoie.
             </p>
             <div className="flex space-x-4">
-              {/* A11Y: On rend le label plus descriptif. */}
-              <a href="#" aria-label="Visitez notre page Instagram" className="hover:text-white transition-colors">
+              {/* A11Y: Les labels sont plus descriptifs pour quand les liens seront activés. */}
+              {/* <a href="#" aria-label="Visitez notre page Instagram" className="hover:text-white transition-colors">
                 <Instagram size={20} aria-hidden="true" />
               </a>
               <a href="#" aria-label="Visitez notre profil LinkedIn" className="hover:text-white transition-colors">
                 <Linkedin size={20} aria-hidden="true" />
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -73,11 +73,19 @@ export default function Footer() {
           <p>
             &copy; {currentYear} Bernier Palettes. Tous droits réservés.
           </p>
-          <Link href="/politique-de-confidentialite" className="hover:text-white underline transition-colors">
-            Politique de Confidentialité
-          </Link>
+          {/* On ajoute une navigation pour les liens légaux */}
+          <nav className="flex justify-center gap-x-6" aria-label="Navigation légale">
+            <Link href="/politique-de-confidentialite" className="hover:text-white underline transition-colors">
+              Politique de Confidentialité
+            </Link>
+            {/* On ajoute le lien vers les mentions légales */}
+            <Link href="/mentions-legales" className="hover:text-white underline transition-colors">
+              Mentions Légales
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
   );
 }
+

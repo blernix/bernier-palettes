@@ -1,37 +1,37 @@
-// components/ProductsSection.jsx
 import ProductCard from './ProductCard';
 
 // SEO: On enrichit nos données avec des textes alternatifs uniques et descriptifs pour chaque image.
+// SEO (Contenu): Les descriptions sont maintenant optimisées avec des mots-clés locaux et transactionnels.
 const productsData = [
   {
     title: 'Palette Standard Recyclée',
-    description: 'Palette en bois robuste et polyvalente pour une utilisation quotidienne dans différents secteurs industriels.',
+    description: "Notre palette standard recyclée, la solution économique et fiable pour vos besoins logistiques à Chambéry et en Savoie. Disponible en plusieurs charges.",
     href: '/produits/palette-standard-recyclee',
     imageUrl: '/palettesstandart.png',
-    altText: 'Ouvrier assemblant une palette en bois standard recyclée dans un atelier.',
+    altText: 'Ouvrier assemblant une palette en bois standard recyclée dans un atelier à Chambéry.',
   },
   {
     title: 'Palette Europe (EPAL) Recyclée',
-    description: 'Palette aux dimensions européennes standardisées, idéale pour le transport international de marchandises.',
+    description: "Conforme aux normes européennes, notre palette Europe EPAL d'occasion est idéale pour le transport international. En tant que réparateur agréé, nous garantissons la qualité.",
     href: '/produits/palette-europe-epal-recyclee',
     badge: 'Réparateur agréé EPAL',
     tag: 'Certification EPAL',
     imageUrl: '/paletteeurope.png',
-    altText: 'Gros plan sur une palette Europe EPAL en bois de haute qualité.',
+    altText: "Gros plan sur une palette Europe EPAL en bois de haute qualité, prête pour l'expédition.",
   },
   {
     title: 'Palette sur-mesure Neuve et Recyclée',
-    description: 'Solutions sur mesure adaptées à vos besoins spécifiques en termes de dimensions et de capacité de charge.',
+    description: "Un besoin spécifique ? Nous fabriquons votre palette sur-mesure à Châteauneuf (73) pour répondre à vos exigences de dimensions et de charge.",
     href: '/produits/palette-sur-mesure',
     imageUrl: '/palettesmesure.png',
-    altText: 'Machine industrielle fabriquant une palette en bois sur-mesure.',
+    altText: "Machine industrielle fabriquant une palette en bois sur-mesure dans l'usine de Bernier Palettes en Savoie.",
   },
   {
     title: 'Autres types de Palettes et Accessoires',
-    description: "Palettes moulées pour l'export, palettes plastiques et réhausses de palettes pour des besoins spécifiques.",
+    description: "Explorez nos solutions spécialisées : palettes moulées pour l'export (NIMP15), palettes plastiques et réhausses pour tous vos besoins en Savoie.",
     href: '/produits/autres-palettes-accessoires',
     imageUrl: '/autrespalettes.png',
-    altText: "Vue d'un stock de palettes en bois variées prêtes à l'expédition.",
+    altText: "Vue d'un stock de différents types de palettes en bois, incluant des palettes moulées, dans un entrepôt.",
   },
 ];
 
@@ -42,12 +42,13 @@ export default function ProductsSection() {
       <div className="container relative mx-auto px-6">
         
         <div className="text-center mb-12">
-          {/* A11Y & SEO: On donne un id au titre pour le lier à la section. */}
-          <h2 id="products-heading" className="text-4xl font-bold text-[#3C3633] mb-4" style={{ fontFamily: 'serif' }}>
-            Nos produits
+          {/* SEO (Contenu): Titre optimisé avec des mots-clés clés. */}
+          <h2 id="products-heading" className="text-4xl font-bold text-[#3C3333] mb-4">
+            Nos Palettes en Bois : Achat, Vente et Solutions sur Mesure
           </h2>
+          {/* SEO (Contenu): Paragraphe optimisé avec des mots-clés locaux. */}
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Des solutions de haute qualité adaptées à tous vos besoins en matière de palettes en bois.
+            Découvrez notre gamme complète de palettes en bois neuves, d'occasion et recyclées, disponibles à la vente et à la livraison dans toute la Savoie, de Chambéry à Albertville.
           </p>
         </div>
 
@@ -62,3 +63,4 @@ export default function ProductsSection() {
     </section>
   );
 }
+
