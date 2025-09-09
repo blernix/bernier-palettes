@@ -44,7 +44,7 @@ export default function LegalNoticePage() {
               <div className="pt-6 border-t border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-800 font-serif">Article 2 : Directeur de la Publication</h2>
                 <p className="mt-4">
-                  Le Directeur de la publication est Monsieur <strong>Stéphane Troussard</strong>, en sa qualité de Président de la société STRD CONSEIL, elle-même Présidente de la société SAS BERNIER.
+                  Le Directeur de la publication est Monsieur <strong>Stéphane Troussard</strong>.
                 </p>
               </div>
 

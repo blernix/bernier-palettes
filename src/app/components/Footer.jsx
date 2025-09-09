@@ -1,9 +1,8 @@
-// components/Footer.jsx
 'use client';
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Instagram, Linkedin } from 'lucide-react';
+import Image from 'next/image'; // On importe le composant Image pour le logo
 
 const navLinks = [
   { name: 'Accueil', href: '#accueil' },
@@ -19,7 +18,6 @@ export default function Footer() {
   const isHomePage = pathname === '/';
 
   return (
-    // A11Y: On ajoute un aria-label pour identifier clairement cette section en tant que pied de page principal.
     <footer className="bg-[#3C3633] text-gray-300" aria-label="Pied de page">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -29,14 +27,24 @@ export default function Footer() {
             <p className="text-sm">
               Spécialiste de la palette en bois recyclée depuis plus de 30 ans en Savoie.
             </p>
-            <div className="flex space-x-4">
-              {/* A11Y: Les labels sont plus descriptifs pour quand les liens seront activés. */}
-              {/* <a href="#" aria-label="Visitez notre page Instagram" className="hover:text-white transition-colors">
-                <Instagram size={20} aria-hidden="true" />
+            {/* --- MODIFICATION ICI --- */}
+            <div className="pt-2">
+              <a 
+                href="https://www.reseau-entreprendre.org/savoie/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Visitez le site de Réseau Entreprendre Savoie, partenaire de Bernier Palettes" 
+                className="hover:opacity-80 transition-opacity"
+              >
+                {/* Assurez-vous que le nom du fichier SVG est correct dans votre dossier /public */}
+                <Image
+                  src="/reseau-entreprendre-logo.svg" 
+                  alt="Logo de Réseau Entreprendre Savoie"
+                  width={150}
+                  height={40}
+                  className="h-auto"
+                />
               </a>
-              <a href="#" aria-label="Visitez notre profil LinkedIn" className="hover:text-white transition-colors">
-                <Linkedin size={20} aria-hidden="true" />
-              </a> */}
             </div>
           </div>
 
@@ -58,27 +66,28 @@ export default function Footer() {
             <div className="text-sm">
               <p>2 RD 1006, Les Iles</p>
               <p>73390 Châteauneuf, France</p>
-              {/* UX: On rend le numéro de téléphone et l'email cliquables. */}
               <p className="mt-2">
                 Téléphone: <a href="tel:+33479442193" className="hover:text-white hover:underline">04 79 44 21 93</a>
               </p>
               <p>
-                Email: <a href="mailto:bernier.palettes@gmail.com" className="hover:text-white hover:underline">bernier.palettes@gmail.com</a>
+                Email: <a href="mailto:commercial@bernier-palettes.com" className="hover:text-white hover:underline">commercial@bernier-palettes.com</a>
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm space-y-2 md:space-y-0 md:flex md:justify-between md:items-center">
+        <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm space-y-4 md:space-y-0 md:flex md:justify-between md:items-center">
+          {/* --- MODIFICATION ICI --- */}
           <p>
-            &copy; {currentYear} Bernier Palettes. Tous droits réservés.
+            &copy; {currentYear} Bernier Palettes - 
+            <a href="https://killian-lecrut.com" target="_blank" rel="noopener noreferrer" className="ml-1 hover:text-white underline transition-colors">
+              Site réalisé par Killian Lecrut
+            </a>
           </p>
-          {/* On ajoute une navigation pour les liens légaux */}
           <nav className="flex justify-center gap-x-6" aria-label="Navigation légale">
             <Link href="/politique-de-confidentialite" className="hover:text-white underline transition-colors">
               Politique de Confidentialité
             </Link>
-            {/* On ajoute le lien vers les mentions légales */}
             <Link href="/mentions-legales" className="hover:text-white underline transition-colors">
               Mentions Légales
             </Link>
@@ -88,4 +97,3 @@ export default function Footer() {
     </footer>
   );
 }
-

@@ -7,7 +7,7 @@ import ContactForm from './ContactForm';
 // Les données restent structurées pour une maintenance facile.
 const contactDetails = [
   { icon: Phone, title: 'Téléphone', value: '04 79 44 21 93', href: 'tel:+33479442193' },
-  { icon: Mail, title: 'Email', value: 'bernier.palettes@gmail.com', href: 'mailto:bernier.palettes@gmail.com' },
+  { icon: Mail, title: 'Email', value: 'commercial@bernier-palettes.com', href: 'mailto:commercial@bernier-palettes.com' },
   { icon: MapPin, title: 'Adresse', value: '2 RD 1006, Les Iles\n73390 Châteauneuf, France' },
 ];
 
