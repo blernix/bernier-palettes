@@ -96,6 +96,7 @@ export default function RootLayout({ children }) {
     <html lang="fr" className={`${montserrat.variable} ${roboto_slab.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="-SS19nbMkYMAX-WxgEe_F9YHo-jct_C_IfixqpvxwF0" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
