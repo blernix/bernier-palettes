@@ -11,7 +11,7 @@ const features = [
   {
     icon: Leaf,
     title: 'Développement durable',
-    description: 'Notre engagement pour le recyclage et la valorisation des palettes en bois est au cœur de notre démarche d\'économie circulaire en Savoie.',
+    description: 'Notre engagement pour la réhabilitation et la valorisation des palettes en bois est au cœur de notre démarche d\'économie circulaire en Savoie.',
   },
   {
     icon: Clock,
@@ -22,7 +22,7 @@ const features = [
 
 // SEO: Les textes alternatifs sont optimisés avec des descriptions précises et des mots-clés locaux.
 const images = [
-  { src: '/stockpalettes.png', alt: "Vue intérieure de notre entrepôt de Châteauneuf (73) avec des piles de palettes en bois recyclées." },
+  { src: '/stockpalettes.png', alt: "Vue intérieure de notre entrepôt de Châteauneuf (73) avec des piles de palettes en bois revalorisée." },
   { src: '/hero.png', alt: "Camion de livraison Bernier Palettes prêt pour une tournée de collecte en Savoie." },
   { src: '/chargementpalettes.png', alt: "Employé qualifié assurant le chargement de palettes Europe EPAL sur un camion." },
   { src: '/camionpalettes.png', alt: "Flotte de camions Bernier Palettes spécialisée dans la livraison de palettes sur-mesure à Chambéry et Albertville." },
@@ -42,7 +42,7 @@ export default function AboutSection() {
             </h2>
             {/* SEO (Contenu): Le texte est reformulé pour intégrer naturellement les mots-clés du rapport. */}
             <div className="space-y-4 text-gray-600">
-              <p>Fondée il y a plus de 30 ans, notre entreprise s'est imposée comme un fournisseur de palettes incontournable en Savoie. Spécialistes de la fabrication et du recyclage de palettes en bois, nous sommes basés à Châteauneuf, près de Chambéry.</p>
+              <p>Fondée il y a plus de 30 ans, notre entreprise s'est imposée comme un fournisseur de palettes incontournable en Savoie. Spécialistes de la fabrication et à la revalorisation de palettes en bois, nous sommes basés à Châteauneuf, près de Chambéry.</p>
               <p>Notre engagement envers la qualité nous a permis de devenir le partenaire de confiance de nombreuses entreprises pour leurs solutions logistiques. Nous combinons un savoir-faire artisanal avec des techniques modernes pour vous offrir des produits fiables.</p>
               <p>Nous maîtrisons toute la chaîne de valeur : de la collecte et le tri, à l'achat, la vente et le reconditionnement de palettes d'occasion, dans une démarche d'économie circulaire.</p>
             </div>

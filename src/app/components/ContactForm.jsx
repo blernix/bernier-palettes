@@ -29,7 +29,7 @@ export default function ContactForm({ initialSubject = '' }) {
     const serviceSubjects = [
       'Demande concernant : Achat de palettes',
       'Demande concernant : Tournée de collecte de palettes',
-      'Demande concernant : Broyage et recyclage',
+      'Demande concernant : Broyage et revalorisation',
     ];
     const productSubjects = productsDetails.map(p => `Devis pour : ${p.title}`);
     

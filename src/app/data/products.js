@@ -3,26 +3,26 @@
 export const productsDetails = [
   // --- PRODUIT 1 : PALETTE STANDARD ---
   {
-    slug: 'palette-standard-recyclee',
-    title: 'Palette Standard Recyclée',
+    slug: 'palette-standard-revalorisee',
+    title: 'Palette Standard Revalorisée',
     // SEO: On intègre des mots-clés locaux et d'action.
-    shortDescription: 'Nos palettes en bois standard recyclées, une solution robuste et économique pour vos besoins logistiques en Savoie (73).',
+    shortDescription: 'Nos palettes en bois standard revalorisée, une solution robuste et économique pour vos besoins logistiques en Savoie (73).',
     imageUrl: '/palettesstandart.png',
-    metaTitle: 'Palette Standard Recyclée Bois en Savoie (73) | Bernier Palettes',
-    metaDescription: 'Découvrez notre gamme de palettes en bois standard recyclées. Des solutions robustes et économiques pour vos besoins logistiques à Chambéry, Albertville et en Savoie.',
-    altText: 'Ouvrier assemblant une palette en bois standard recyclée dans l\'atelier de Bernier Palettes en Savoie.',
+    metaTitle: 'Palette Standard Revalorisée Bois en Savoie (73) | Bernier Palettes',
+    metaDescription: 'Découvrez notre gamme de palettes en bois standard revalorisées. Des solutions robustes et économiques pour vos besoins logistiques à Chambéry, Albertville et en Savoie.',
+    altText: 'Ouvrier assemblant une palette en bois standard revalorisée dans l\'atelier de Bernier Palettes en Savoie.',
     // SEO: On enrichit la description avec des synonymes et des cas d'usage.
-    detailedDescription: 'Fabriquée à partir de bois de haute qualité sélectionné pour sa résistance, chaque palette standard recyclée passe un contrôle qualité rigoureux. Idéale pour le transport et le stockage dans divers secteurs en région Rhône-Alpes, elle offre une solution fiable et économique. Nous proposons différents modèles, de la palette légère à la palette lourde, pour répondre précisément à votre cahier des charges.',
-    availableTypes: [ 'Palette bois recyclée légère (Charge 400 kg)', 'Palette bois recyclée mi-lourde (Charge 800 kg)', 'Palette bois recyclée lourde (Charge 1500 kg)', 'Palette bois recyclée normes CP', 'Demi-palette et Quart de palette bois recyclée', 'Palette bois recyclée à chevron ou 2 entrées' ],
-    specifications: [ { key: 'Dimensions', value: 'Variables selon modèle' }, { key: 'Charge', value: 'De 400 kg à 1500 kg selon modèle' }, { key: 'Poids', value: 'Variable selon modèle' }, { key: 'Matériau', value: 'Bois recyclé' }, { key: 'Entrées', value: '2 ou 4 voies selon modèle' }, { key: 'Options', value: 'Modèles légers, mi-lourds, lourds, demi-palettes, etc.' } ],
+    detailedDescription: 'Fabriquée à partir de bois de haute qualité sélectionné pour sa résistance, chaque palette standard revalorisée passe un contrôle qualité rigoureux. Idéale pour le transport et le stockage dans divers secteurs en région Rhône-Alpes, elle offre une solution fiable et économique. Nous proposons différents modèles, de la palette légère à la palette lourde, pour répondre précisément à votre cahier des charges.',
+    availableTypes: [ 'Palette bois revalorisée légère (Charge 400 kg)', 'Palette bois revalorisée mi-lourde (Charge 800 kg)', 'Palette bois revalorisée lourde (Charge 1500 kg)', 'Palette bois revalorisée normes CP', 'Demi-palette et Quart de palette bois revalorisée', 'Palette bois revalorisée à chevron ou 2 entrées' ],
+    specifications: [ { key: 'Dimensions', value: 'Variables selon modèle' }, { key: 'Charge', value: 'De 400 kg à 1500 kg selon modèle' }, { key: 'Poids', value: 'Variable selon modèle' }, { key: 'Matériau', value: 'Bois revalorisé' }, { key: 'Entrées', value: '2 ou 4 voies selon modèle' }, { key: 'Options', value: 'Modèles légers, mi-lourds, lourds, demi-palettes, etc.' } ],
     advantages: [ 'Robustesse et durabilité exceptionnelles', 'Adapté à la plupart des environnements industriels', 'Excellent rapport qualité-prix', 'Facilement réparable' ],
     applications: [ 'Transport de marchandises lourdes', 'Stockage en entrepôt', 'Logistique générale', 'Secteur alimentaire et industriel' ],
   },
 
   // --- PRODUIT 2 : PALETTE EUROPE (EPAL) ---
   {
-    slug: 'palette-europe-epal-recyclee',
-    title: 'Palette Europe (EPAL) Recyclée',
+    slug: 'palette-europe-epal-revalorisee',
+    title: 'Palette Europe (EPAL) Revalorisée',
     // SEO: On précise "achat" et "réparation".
     shortDescription: 'Achat et réparation de palettes Europe EPAL d\'occasion aux dimensions standardisées, idéales pour le transport international depuis la Savoie.',
     imageUrl: '/paletteeurope.png',
@@ -49,15 +49,15 @@ export const productsDetails = [
   // --- PRODUIT 3 : PALETTE SUR MESURE ---
   {
     slug: 'palette-sur-mesure',
-    title: 'Palette sur-mesure Neuve et Recyclée',
+    title: 'Palette sur-mesure Neuve et Revalorisée',
     // SEO: On utilise "Fabricant" et la localité.
     shortDescription: 'Fabricant de palettes en bois sur mesure en Savoie, pour des solutions adaptées à vos dimensions et capacités de charge spécifiques.',
     imageUrl: '/palettesmesure.png',
     metaTitle: 'Fabrication Palette sur Mesure en Bois | Savoie (73)',
-    metaDescription: 'Besoin de dimensions spécifiques ? Bernier Palettes conçoit et fabrique vos palettes en bois sur mesure, neuves ou recyclées, pour répondre à toutes vos contraintes.',
+    metaDescription: 'Besoin de dimensions spécifiques ? Bernier Palettes conçoit et fabrique vos palettes en bois sur mesure, neuves ou revalorisées, pour répondre à toutes vos contraintes.',
     altText: 'Machine industrielle fabriquant une palette en bois sur-mesure dans l\'usine de Bernier Palettes.',
     // SEO: On ajoute des mots-clés comme "cahier des charges", "bureau d'études".
-    detailedDescription: "Pour vos produits hors normes, nos palettes personnalisées sont la solution. Notre bureau d'études collabore étroitement avec vous pour comprendre votre cahier des charges et concevoir une solution sur mesure. Que vous ayez besoin de dimensions non standard, de capacités de charge exceptionnelles ou de traitements spécifiques comme la norme NIMP15, nous pouvons créer la palette neuve ou recyclée idéale pour votre activité à Chambéry et dans toute la Savoie.",
+    detailedDescription: "Pour vos produits hors normes, nos palettes personnalisées sont la solution. Notre bureau d'études collabore étroitement avec vous pour comprendre votre cahier des charges et concevoir une solution sur mesure. Que vous ayez besoin de dimensions non standard, de capacités de charge exceptionnelles ou de traitements spécifiques comme la norme NIMP15, nous pouvons créer la palette neuve ou revalorisée idéale pour votre activité à Chambéry et dans toute la Savoie.",
     specifications: [ { key: 'Dimensions', value: 'Sur mesure selon vos besoins' }, { key: 'Charge', value: 'Adaptée à vos exigences' }, { key: 'Poids', value: 'Variable selon les spécifications' }, { key: 'Matériau', value: 'Pin, épicéa, ou autres essences disponibles' }, { key: 'Traitement', value: 'Hors côte, NIMP15, ou autres selon besoin' } ],
     advantages: [ 'Dimensions adaptées à vos produits spécifiques', 'Capacité de charge optimisée pour votre utilisation', 'Design personnalisé selon vos contraintes logistiques', "Possibilité d'impression de votre logo" ],
     applications: [ 'Transport de produits hors normes', 'Applications industrielles spécifiques', 'Secteurs avec contraintes particulières', 'Solutions logistiques optimisées' ],
@@ -75,7 +75,7 @@ export const productsDetails = [
     altText: 'Vue d\'un stock de palettes en bois variées, incluant des réhausses, prêtes à l\'expédition en Savoie.',
     // SEO: On intègre des mots-clés comme "NIMP15", "hygiéniques", "agroalimentaire".
     detailedDescription: "Notre gamme complète inclut des palettes moulées, légères et conformes à la norme NIMP15, spécialement conçues pour l'exportation. Nous proposons également des palettes plastiques durables et hygiéniques, idéales pour les environnements humides ou les secteurs agroalimentaires et pharmaceutiques. Complétez votre équipement avec nos réhausses de palettes en bois, permettant d'augmenter la capacité de stockage de vos caisses-palettes tout en sécurisant vos marchandises.",
-    specifications: [ { key: 'Types disponibles', value: 'Palettes moulées, palettes plastiques, réhausses' }, { key: 'Matériaux', value: 'Bois pressé, plastique recyclé, bois' }, { key: 'Applications', value: 'Export, usage intensif, augmentation de capacité' }, { key: 'Couverture', value: 'Disponible sur commande dans toute la France' } ],
+    specifications: [ { key: 'Types disponibles', value: 'Palettes moulées, palettes plastiques, réhausses' }, { key: 'Matériaux', value: 'Bois pressé, plastique revalorisé, bois' }, { key: 'Applications', value: 'Export, usage intensif, augmentation de capacité' }, { key: 'Couverture', value: 'Disponible sur commande dans toute la France' } ],
     advantages: [ 'Solutions spécialisées pour besoins spécifiques', 'Options écologiques et durables', 'Compatibilité avec systèmes de palettes existants', "Adaptées aux normes internationales d'exportation" ],
     applications: [ "Export international avec normes phytosanitaires strictes", "Environnements humides ou alimentaires (palettes plastiques)", "Augmentation de capacité de chargement (réhausses)", "Stockage de produits spécifiques nécessitant des solutions adaptées" ],
   },

@@ -31,7 +31,7 @@ export default function Hero() {
         
         {/* --- SEO: Titre H1 mis à jour avec le bon positionnement du drapeau --- */}
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-          Palette Bois en Savoie : Achat, Recyclage & Sur-Mesure
+          Palette Bois en Savoie : Achat, Revalorisation & Sur-Mesure
           {/* A11Y & SEO: Le drapeau est maintenant "inline" avec le texte */}
           <Image 
             src="/savoie.svg" 
@@ -44,7 +44,7 @@ export default function Hero() {
         
         {/* --- SEO: Paragraphe mis à jour --- */}
         <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
-          Depuis plus de 30 ans, <strong>Bernier Palettes</strong> est votre fournisseur de confiance près de <strong>Chambéry</strong> pour l'achat et le recyclage de palettes en bois neuves, d'occasion et reconditionnées.
+          Depuis plus de 30 ans, <strong>Bernier Palettes</strong> est votre fournisseur de confiance près de <strong>Chambéry</strong> pour l'achat et la revalorisation de palettes en bois neuves, d'occasion et reconditionnées.
         </p>
         
         <div className="flex flex-col items-center gap-4 md:flex-row justify-center">

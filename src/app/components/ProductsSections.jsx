@@ -4,23 +4,23 @@ import ProductCard from './ProductCard';
 // SEO (Contenu): Les descriptions sont maintenant optimisées avec des mots-clés locaux et transactionnels.
 const productsData = [
   {
-    title: 'Palette Standard Recyclée',
-    description: "Notre palette standard recyclée, la solution économique et fiable pour vos besoins logistiques à Chambéry et en Savoie. Disponible en plusieurs charges.",
-    href: '/produits/palette-standard-recyclee',
+    title: 'Palette Standard Revalorisée',
+    description: "Notre palette standard revalorisée, la solution économique et fiable pour vos besoins logistiques à Chambéry et en Savoie. Disponible en plusieurs charges.",
+    href: '/produits/palette-standard-revalorisee',
     imageUrl: '/palettesstandart.png',
     altText: 'Ouvrier assemblant une palette en bois standard recyclée dans un atelier à Chambéry.',
   },
   {
-    title: 'Palette Europe (EPAL) Recyclée',
+    title: 'Palette Europe (EPAL) Revalorisée',
     description: "Conforme aux normes européennes, notre palette Europe EPAL d'occasion est idéale pour le transport international. En tant que réparateur agréé, nous garantissons la qualité.",
-    href: '/produits/palette-europe-epal-recyclee',
+    href: '/produits/palette-europe-epal-revalorisee',
     badge: 'Réparateur agréé EPAL',
     tag: 'Certification EPAL',
     imageUrl: '/paletteeurope.png',
     altText: "Gros plan sur une palette Europe EPAL en bois de haute qualité, prête pour l'expédition.",
   },
   {
-    title: 'Palette sur-mesure Neuve et Recyclée',
+    title: 'Palette sur-mesure Neuve et Revalorisée',
     description: "Un besoin spécifique ? Nous fabriquons votre palette sur-mesure à Châteauneuf (73) pour répondre à vos exigences de dimensions et de charge.",
     href: '/produits/palette-sur-mesure',
     imageUrl: '/palettesmesure.png',
@@ -48,7 +48,7 @@ export default function ProductsSection() {
           </h2>
           {/* SEO (Contenu): Paragraphe optimisé avec des mots-clés locaux. */}
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Découvrez notre gamme complète de palettes en bois neuves, d'occasion et recyclées, disponibles à la vente et à la livraison dans toute la Savoie, de Chambéry à Albertville.
+            Découvrez notre gamme complète de palettes en bois neuves, d'occasion et revalorisées, disponibles à la vente et à la livraison dans toute la Savoie, de Chambéry à Albertville.
           </p>
         </div>
 

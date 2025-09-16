@@ -21,7 +21,7 @@ const servicesData = [
   },
   {
     icon: Recycle,
-    title: 'Broyage et recyclage',
+    title: 'Broyage et revalorisation',
     description: 'Notre solution écoresponsable pour les palettes non-réparables. Nous assurons le broyage et la valorisation de vos déchets de bois.',
     details: 'Dans le cadre de notre engagement pour l\'économie circulaire, les palettes trop endommagées sont transformées en copeaux de bois pour le chauffage ou d\'autres usages industriels.',
   },
@@ -57,7 +57,7 @@ export default function ServicesSection() {
           <br></br>
           {/* SEO (Contenu): Paragraphe optimisé avec des mots-clés stratégiques. */}
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Découvrez nos solutions complètes pour la gestion de vos palettes en bois en Savoie. De l'achat à la collecte et au recyclage, nous valorisons vos ressources dans une démarche d'économie circulaire.
+            Découvrez nos solutions complètes pour la gestion de vos palettes en bois en Savoie. De l'achat à la collecte et à la réhabilitation, nous valorisons vos ressources dans une démarche d'économie circulaire.
           </p>
         </div>
 

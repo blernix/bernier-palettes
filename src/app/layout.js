@@ -19,14 +19,14 @@ const roboto_slab = Roboto_Slab({
 
 // 3. Métadonnées SEO optimisées pour la page d'accueil
 export const metadata = {
-  title: 'Bernier Palettes - Achat & Recyclage Palette Bois en Savoie (73)',
-  description: "Spécialiste de la palette en bois neuve et recyclée en Savoie. Bernier Palettes propose la fabrication sur-mesure, l'achat et la collecte de palettes à Chambéry, Albertville et alentours. Devis rapide.",
+  title: 'Bernier Palettes - Achat & Revalorisation Palette Bois en Savoie (73)',
+  description: "Spécialiste de la palette en bois neuve et revalorisée en Savoie. Bernier Palettes propose la fabrication sur-mesure, l'achat et la collecte de palettes à Chambéry, Albertville et alentours. Devis rapide.",
   alternates: {
     canonical: 'https://www.bernier-palettes.fr',
   },
   openGraph: {
-    title: 'Bernier Palettes - Achat & Recyclage Palette Bois en Savoie (73)',
-    description: 'Votre expert en solutions de palettes en bois neuves, recyclées et sur-mesure en Savoie.',
+    title: 'Bernier Palettes - Achat & Revalorisation Palette Bois en Savoie (73)',
+    description: 'Votre expert en solutions de palettes en bois neuves, revalorisée et sur-mesure en Savoie.',
     url: 'https://www.bernier-palettes.fr',
     siteName: 'Bernier Palettes',
     images: [
@@ -42,8 +42,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bernier Palettes - Achat & Recyclage Palette Bois en Savoie (73)',
-    description: 'Votre expert en solutions de palettes en bois neuves, recyclées et sur-mesure en Savoie.',
+    title: 'Bernier Palettes - Achat & Revalorisation Palette Bois en Savoie (73)',
+    description: 'Votre expert en solutions de palettes en bois neuves, revalorisée et sur-mesure en Savoie.',
     images: ['https://www.bernier-palettes.fr/hero.png'], // URL absolue de votre image
   },
 };
@@ -68,7 +68,7 @@ const jsonLd = {
     postalCode: '73390',
     addressCountry: 'FR',
   },
-  description: "Spécialiste de la palette en bois neuve et recyclée en Savoie. Bernier Palettes propose la fabrication sur-mesure, l'achat et la collecte de palettes.",
+  description: "Spécialiste de la palette en bois neuve et revalorisée en Savoie. Bernier Palettes propose la fabrication sur-mesure, l'achat et la collecte de palettes.",
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',

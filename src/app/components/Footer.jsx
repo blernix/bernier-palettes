@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white">Bernier Palettes</h3>
             <p className="text-sm">
-              Spécialiste de la palette en bois recyclée depuis plus de 30 ans en Savoie.
+              Spécialiste de la palette en bois revalorisée depuis plus de 30 ans en Savoie.
             </p>
             {/* --- MODIFICATION ICI --- */}
             <div className="pt-2">
